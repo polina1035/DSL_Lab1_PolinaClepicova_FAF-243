@@ -3,7 +3,7 @@
 ### Course: Formal Languages & Finite Automata
 
 ### Author: Polina Clepicova FAF-243
-
+Variant 7
 ---
 
 ## Theory
@@ -46,7 +46,7 @@ According to the **Chomsky Classification**, the grammar in this laboratory work
 * **Conversion Logic**: The `to_finite_automaton` method maps each non-terminal symbol to a state in the Finite Automaton (FA). Since regular grammars have rules like $A \rightarrow aB$, these are directly converted into transitions $\delta(A, a) = B$. For rules ending in a terminal like $L \rightarrow c$, a special "Final" state is created.
 * **Finite Automaton Class**: This class manages the state transitions. The `string_belong_to_language` method iterates through the characters of an input string, updating the "current state" based on the transition function . If the final character leads to a designated "Final State," the string is accepted.
 
-### Code Snippets
+### Code Snippets (Variant 7)
 
 **Grammar to FA Conversion:**
 
