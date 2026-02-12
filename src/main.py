@@ -14,32 +14,36 @@ def main():
         'L': ['aL', 'bL', 'c']
     }
 
-    # Instantiate the Grammar
+    # 1. Initialize Grammar
     grammar = Grammar(Vn, Vt, P, 'S')
 
-    # 1. Generate 5 valid strings
+    # 2. Automatically generate 5 valid strings
     print("--- 5 Generated Valid Strings ---")
-    generated_words = []
     for _ in range(5):
-        word = grammar.generate_string()
-        generated_words.append(word)
-        print(f"Generated: {word}")
+        print(f"Generated: {grammar.generate_string()}")
 
-    # 2. Convert Grammar to Finite Automaton
+    # 3. Convert the Grammar to a Finite Automaton
     fa = grammar.to_finite_automaton()
 
-    # 3. Verify the generated strings using the FA
-    print("\n--- Finite Automaton Verification ---")
-    for word in generated_words:
-        is_valid = fa.string_belong_to_language(word)
-        print(f"Checking word '{word}': {'ACCEPTED' if is_valid else 'REJECTED'}")
+    # 4. Interactive Manual Verification
+    print("\n--- Manual FA Verification ---")
+    print("Type a string to check if it belongs to the language.")
+    print("Type 'exit' or 'q' to stop.")
 
-    # 4. Manual tests
-    print("\n--- Manual Tests ---")
-    test_cases = ["abdc", "abcdbdc", "abcc", "aaaa"]
-    for test in test_cases:
-        result = "VALID" if fa.string_belong_to_language(test) else "INVALID"
-        print(f"Manual test '{test}': {result}")
+    while True:
+        # Get input from user and remove whitespace
+        user_input = input("\nEnter string to check: ").strip()
+
+        # Check if the user wants to close the program
+        if user_input.lower() in ['exit', 'q']:
+            print("Exiting program...")
+            break
+
+        # Run the FA check
+        if fa.string_belong_to_language(user_input):
+            print(f"Result: SUCCESS! The string '{user_input}' belongs to the language.")
+        else:
+            print(f"Result: REJECTED! The string '{user_input}' is NOT in the language.")
 
 
 if __name__ == "__main__":
